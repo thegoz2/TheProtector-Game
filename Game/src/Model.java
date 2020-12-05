@@ -1,5 +1,5 @@
 public class Model {
-    private int Score;
+    private int Score= 0;
     public Model(){
 
     }
@@ -9,7 +9,11 @@ public class Model {
     }
 
     public void setScore(int score) {
-        Score = score;
+        this.Score = score;
     }
+    public int Correct(int yes){
+        return getScore ()+10;
+    }
+    ]public int InCorrect(int)
 }
 
