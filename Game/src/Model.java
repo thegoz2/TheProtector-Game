@@ -11,9 +11,18 @@ public class Model {
     public void setScore(int score) {
         this.Score = score;
     }
-    public int Correct(int yes){
-        return getScore ()+10;
+    public int Correct(){
+        return getScore ()+100;
     }
-    ]public int InCorrect(int)
+    public int InCorrect(){
+        if(Score <= 0 || Score <=100){
+            return 0;
+        }
+        else {
+            return  getScore ()-100;
+
+        }
+
+    }
 }
 
