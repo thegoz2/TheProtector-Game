@@ -1,6 +1,7 @@
-import java.io.StreamCorruptedException;
+import javax.swing.*;
+import javax.swing.JComponent.*;
 
-public class Model  {
+public class Model extends JComponent {
 
     public  int Combo = 1;
     public int Score = 0;

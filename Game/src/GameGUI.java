@@ -1,14 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 //ของจริง
-<<<<<<< HEAD
-public class GameGUI implements ActionListener, WindowListener {
-=======
+
 public class GameGUI extends Model implements ActionListener, WindowListener {
     public String check;
->>>>>>> 18e347900c52f1eccd4eab2b39f367acb089239c
+    public Timer timer;
     private JFrame frame;
     private CardLayout c1;
     private JPanel topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel, tandsPanel;
@@ -138,37 +142,50 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
         frame.add(buttonPanel);
         frame.addWindowListener(this);
         frame.setVisible(true);
+        timer = new Timer();
+
 
     }
 
     @Override
 
 
-    public void actionPerformed(ActionEvent click) {
+    public  void actionPerformed(ActionEvent click)  {
         if(click.getSource().equals(bt1)) {
-            c1.first(cardPanel);
-<<<<<<< HEAD
-            bt1.setText("bt5");
-            bt2.setText("bt6");
-            bt3.setText("bt7");
-            bt4.setText("bt8");
-=======
-            bt1.setText ("bt5");
-            bt2.setText ("bt6");
-            bt3.setText ("bt7");
-            bt4.setText ("bt8");
 
->>>>>>> 18e347900c52f1eccd4eab2b39f367acb089239c
+
+            bt1.setBackground (Color.green);
+            timer.schedule(new TimerTask (){
+
+                              @Override
+                              public void run() {
+                                  c1.first(cardPanel);
+                                  bt2.setText("bt6");
+                                  bt3.setText("bt7");
+                                  bt4.setText("bt8");
+                                  bt1.setText("bt5");
+                                  bt1.setBackground (null);
+                                  bt2.setBackground (null);
+                                  bt3.setBackground (null);
+                                  bt4.setBackground (null);
+                              }
+                          },2500);
+
+
         }
         else if(click.getSource().equals(bt2)) {
             c1.show(cardPanel, "2");
+            bt2.setBackground (Color.red);
+
 
         }
         else if(click.getSource().equals(bt3)) {
             c1.show(cardPanel, "3");
+            bt3.setBackground (Color.red);
         }
         else if(click.getSource().equals(bt4)) {
             c1.last(cardPanel);
+            bt4.setBackground (Color.red);
         }
     }
 
