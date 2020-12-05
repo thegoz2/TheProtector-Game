@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 //ของจริง
-public class GameGUI implements ActionListener, WindowListener {
-
+public class GameGUI extends Model implements ActionListener, WindowListener {
+    public String check;
     private JFrame frame;
     private CardLayout c1;
     private JPanel topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel;
@@ -112,12 +112,20 @@ public class GameGUI implements ActionListener, WindowListener {
     }
 
     @Override
+
+
     public void actionPerformed(ActionEvent click) {
         if(click.getSource().equals(bt1)) {
             c1.first(cardPanel);
+            bt1.setText ("bt5");
+            bt2.setText ("bt6");
+            bt3.setText ("bt7");
+            bt4.setText ("bt8");
+
         }
         else if(click.getSource().equals(bt2)) {
             c1.show(cardPanel, "2");
+
         }
         else if(click.getSource().equals(bt3)) {
             c1.show(cardPanel, "3");
