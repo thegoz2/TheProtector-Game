@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 //ของจริง
 public class GameGUI implements ActionListener, WindowListener {
+
     private JFrame frame;
     private CardLayout c1;
     private JPanel topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel;
@@ -14,6 +15,15 @@ public class GameGUI implements ActionListener, WindowListener {
     private CountTime time;
 
     public GameGUI() {
+        try {
+//อันนี้เรียกใช้จาก Library ของ java โดย Default //UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+
+//อันนี้เป็นของแถมมากับเจ้า Library ของ java เช่นกัน
+//UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+
+//อันนี้เป็น theme ของระบบ
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e)  { }
         //SetJFrame
         frame = new JFrame("The Protecter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,10 +78,10 @@ public class GameGUI implements ActionListener, WindowListener {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2));
         //Button
-        bt1 = new JButton("Button 1");
-        bt2 = new JButton("Button 2");
-        bt3 = new JButton("Button 3");
-        bt4 = new JButton("Button 4");
+        bt1 = new JButton("คำตอบ1");
+        bt2 = new JButton("คำตอบ2");
+        bt3 = new JButton("คำตอบ3");
+        bt4 = new JButton("คำตอบ4");
         //addActionListener to Button
         bt1.addActionListener(this);
         bt2.addActionListener(this);

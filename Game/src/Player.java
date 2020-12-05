@@ -1,13 +1,15 @@
 import java.lang.*;
-public class  Player {
-    private int Hp;
+import java.security.PrivateKey.*;
+
+public class  Player extends Model{
+
+    private int Hp=50;
     private int atk;
     private String name;
 
-
-    public Player(int hp) {
-        this.Hp = hp;
-
+public  Player(){}
+    public int getScore(){
+        return Score;
     }
 
     public String getName() {

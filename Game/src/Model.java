@@ -1,28 +1,37 @@
-public class Model {
-    private int Score= 0;
-    public Model(){
+import java.io.StreamCorruptedException;
 
-    }
+public class Model  {
+
+    public  int Combo = 1;
+    public int Score = 0;
+
 
     public int getScore() {
         return Score;
     }
 
-    public void setScore(int score) {
-        this.Score = score;
-    }
-    public int Correct(){
-        return getScore ()+100;
-    }
-    public int InCorrect(){
-        if(Score <= 0 || Score <=100){
-            return 0;
-        }
-        else {
-            return  getScore ()-100;
+    public int InCorrect() {
+
+        if (getScore () <= 0 || getScore ()<= 100) {
+            this.Combo = 1;
+
+             return this.Score=0;
+
+        } else {
+            this.Combo = 1;
+             return this.Score = getScore () - 100 ;
+
 
         }
 
     }
-}
+        public int Correct(){
+
+             this.Score=getScore ()+(100*this.Combo);
+            this.Combo += 1;
+            return Score;
+        }
+
+    }
+
 

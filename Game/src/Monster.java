@@ -9,6 +9,7 @@ public class  Monster {
 
     }
 
+
     public String getName() {
         return name;
     }
