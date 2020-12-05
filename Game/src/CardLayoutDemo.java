@@ -1,38 +1,51 @@
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
 
-//ของจริง
-public class GameGUI implements ActionListener, WindowListener {
+//โค้ดไว้สำหรับลองทำเฉยๆ
+public class CardLayoutDemo extends MonsterCard implements ActionListener {
     private JFrame frame;
-    private CardLayout c1;
-    private JPanel topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel, tandsPanel;
+    private CardLayout c1, frameC1;
+    private JPanel switchPanel, framePanel1, framePanel2, topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel, tandsPanel;
     private JLabel lb1, lb2, lb3, lb4, scoreLabel, monsterHPLabel;
-    private JButton bt1, bt2, bt3, bt4;
+    private JButton bt1, bt2, bt3, bt4, btSwitch, btSwitchBack;
     private JTextField tf1, tf2;
-
     private ImageIcon icon1, icon2, icon3, icon4;
+    private CountTime time, time2;
+    private Thread t, t2;
     private Font font;
-    private CountTime time;
+
     private MonsterCard monsterPanel;
-    private Thread t;
 
-    public GameGUI() {
-        try {
-            //อันนี้เรียกใช้จาก Library ของ java โดย Default //UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-
-            //อันนี้เป็นของแถมมากับเจ้า Library ของ java เช่นกัน
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-
-            //อันนี้เป็น theme ของระบบ
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e)  { }
+    public CardLayoutDemo()
+    {
+        //Set Class
+        monsterPanel = new MonsterCard();
 
         //SetJFrame
-        frame = new JFrame("The Protecter");
+        frame = new JFrame("The Protector");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(2, 1));
-        frame.setSize(1000, 1000);
+        frame.setSize(1000, 850);
+
+        //SetFrameCard
+        frameC1 = new CardLayout();
+        //SetSwitchPanel
+        switchPanel = new JPanel();
+        switchPanel.setLayout(frameC1);
+
+        //SetFramePanel
+        framePanel1 = new JPanel(new GridLayout(2, 1));
+        framePanel2 = new JPanel(new BorderLayout());
+
+        //Button5
+        btSwitchBack = new JButton("Switch Back");
+        btSwitchBack.addActionListener(this);
+        framePanel2.add(btSwitchBack, BorderLayout.WEST);
+        //Thread2
+        time2 = new CountTime();
+        t2 = new Thread(time2);
+        framePanel2.add(time2, BorderLayout.CENTER);
 
         //SetCardPanel
         c1 = new CardLayout();
@@ -67,7 +80,7 @@ public class GameGUI implements ActionListener, WindowListener {
 
         //TextField
         tf1 = new JTextField("Problems : ");
-        tf2 = new JTextField("Your HP : ");
+        tf2 = new JTextField("Life : ");
         tf1.setEditable(false);
         tf2.setEditable(false);
         //addTextArea to TextPanel
@@ -118,83 +131,57 @@ public class GameGUI implements ActionListener, WindowListener {
         buttonPanel.add(bt3);
         buttonPanel.add(bt4);
 
-        //SetTime
-        time = new CountTime();
-        //Thread
-        Thread t = new Thread(time);
-        t.start();
+        //SwitchButton
+        btSwitch = new JButton("Switch Button");
+        btSwitch.addActionListener(this);
 
         //addCardPanel&TextPanel to TopPanel
         topPanel.add(tandsPanel, BorderLayout.NORTH);
-        topPanel.add(cardPanel, BorderLayout.CENTER);
+        topPanel.add(monCardPanel, BorderLayout.CENTER);
         topPanel.add(textPanel, BorderLayout.SOUTH);
+        topPanel.add(btSwitch, BorderLayout.EAST);
         //addCTopPanel&ButtonPanel to JFrame
-        frame.add(topPanel);
-        frame.add(buttonPanel);
-        frame.addWindowListener(this);
+        framePanel1.add(topPanel);
+        framePanel1.add(buttonPanel);
+
+        switchPanel.add(framePanel1, "1");
+        switchPanel.add(framePanel2, "2");
+
+        frame.add(switchPanel);
         frame.setVisible(true);
-
     }
-
     @Override
     public void actionPerformed(ActionEvent click) {
         if(click.getSource().equals(bt1)) {
-            c1.first(cardPanel);
-            bt1.setText("bt5");
-            bt2.setText("bt6");
-            bt3.setText("bt7");
-            bt4.setText("bt8");
+            c.first(monCardPanel);
+
         }
         else if(click.getSource().equals(bt2)) {
-            c1.show(cardPanel, "2");
+            c.show(monCardPanel, "2");
+
         }
         else if(click.getSource().equals(bt3)) {
-            c1.show(cardPanel, "3");
+            c.show(monCardPanel, "3");
+
         }
         else if(click.getSource().equals(bt4)) {
-            c1.last(cardPanel);
+            c.last(monCardPanel);
+
+        }
+        else if(click.getSource().equals(btSwitch)) {
+            frameC1.last(switchPanel);
+            t = new Thread(time2);
+            t.start();
+        }
+        else if(click.getSource().equals(btSwitchBack)) {
+            frameC1.first(switchPanel);
         }
     }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-
+    // Main Method
+    public static void main(String[] args)
+    {
+        new CardLayoutDemo();
     }
 
-    public static void main(String[] args) {
-        new GameGUI();
-    }
-
-
-
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
 }

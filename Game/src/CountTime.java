@@ -10,7 +10,7 @@ public class CountTime extends JLabel implements Runnable{
         int sec = num;
         Font font = new Font ( "Helvetica", Font.PLAIN, 30 );
         this.setFont(font);
-        this.setText(sec+"");
+        this.setText("Time : "+sec+"");
     }
 
     public void run(){
@@ -19,7 +19,7 @@ public class CountTime extends JLabel implements Runnable{
                 int sec = num;
                 Font font = new Font ( "Helvetica", Font.PLAIN, 30 );
                 this.setFont(font);
-                this.setText(sec+"");
+                this.setText("Time : "+sec+"");
                 Thread.sleep(1000);
                 num--;
                 System.out.println("Sec : " +sec+ " Num : " +num);
