@@ -1,0 +1,63 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class MonsterCard{
+    private JFrame frame;
+    private JLabel mon1, mon2, mon3, mon4, mon5, boss;
+    private ImageIcon icon1, icon2, icon3, icon4, icon5, icon6;
+
+    public JPanel monCardPanel, monPanel1, monPanel2, monPanel3, monPanel4, monPanel5, monPanel6;
+    public CardLayout c;
+
+    public MonsterCard(){
+        c = new CardLayout();
+
+        monCardPanel = new JPanel(c);
+        //Set Frame
+        frame = new JFrame();
+        frame.setSize(1000, 850);
+
+        //Set Monster Panel
+        monPanel1 = new JPanel();
+        monPanel2 = new JPanel();
+        monPanel3 = new JPanel();
+        monPanel4 = new JPanel();
+        monPanel5 = new JPanel();
+        monPanel6 = new JPanel();
+
+        //Icon Monster
+        icon1 = new ImageIcon((getClass().getResource("xeno.png")));
+        icon2 = new ImageIcon((getClass().getResource("behe.png")));
+        icon3 = new ImageIcon((getClass().getResource("kul.png")));
+        icon4 = new ImageIcon((getClass().getResource("safi.png")));
+        icon5 = new ImageIcon((getClass().getResource("ala.png")));
+        icon6 = new ImageIcon((getClass().getResource("fata.png")));
+
+        //Set Label
+        mon1 = new JLabel(icon1);
+        mon2 = new JLabel(icon2);
+        mon3 = new JLabel(icon3);
+        mon4 = new JLabel(icon4);
+        mon5 = new JLabel(icon5);
+        boss = new JLabel(icon6);
+
+        //Add Label to Panel
+        monPanel1.add(mon1);
+        monPanel2.add(mon2);
+        monPanel3.add(mon3);
+        monPanel4.add(mon4);
+        monPanel5.add(mon5);
+        monPanel6.add(boss);
+
+        //Add Panel to CardPanel
+        monCardPanel.add(monPanel1, "1");
+        monCardPanel.add(monPanel2, "2");
+        monCardPanel.add(monPanel3, "3");
+        monCardPanel.add(monPanel4, "4");
+        monCardPanel.add(monPanel5, "5");
+        monCardPanel.add(monPanel6, "6");
+
+    }
+
+}

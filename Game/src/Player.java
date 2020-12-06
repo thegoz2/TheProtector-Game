@@ -3,7 +3,7 @@ import java.security.PrivateKey.*;
 
 public class  Player extends Model implements haveStatus{
 
-    private int Hp=50;
+    private int Hp=100;
     private int atk=10;
     private String name;
 
