@@ -1,11 +1,12 @@
 import java.lang.*;
-public class  Monster {
+public class  Monster implements haveStatus {
     private int Hp;
     public String name;
     public  int atk ;
 
-    public Monster(int hp) {
+    public Monster(int hp,int atk) {
     this.Hp = hp;
+        this.atk = atk;
 
     }
 
@@ -35,13 +36,13 @@ public class  Monster {
     }
 
     public int Attacked(Player p) {
-       int j = p.getHp ();
+       int j = this.getHp ();
        int k = p.getAtk ();
        if(j-k>=0){
            return this.Hp = Hp-k;
        }
         else{
-            return this.Hp = 0;
+            return this.Hp =0 ;
        }
 
     }
