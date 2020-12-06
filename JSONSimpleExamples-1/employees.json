@@ -1,0 +1,283 @@
+[
+	{
+		"quiz": {
+			"q": "What is name of Teri Hatcher's character in 'Desperate Houswives'",
+			"q1": "Susan1",
+			"q2": "Bree",
+			"q3": "Gabrielle",
+			"q4": "Mary"
+		}
+	},
+	{
+		"quiz": {
+			"q": "Which blood vessels extend from the heart and transport oxygen rich blood throughout the body?",
+			"q1": "Arteries1",
+			"q2": "Veins",
+			"q3": "Capillaries",
+			"q4": "Arterioles"
+		}
+	},
+	{
+		"quiz": {
+			"q": "Which country is associated with Robert Mugabe?",
+			"q1": "Zimbabwe1",
+			"q2": "Uganda",
+			"q3": "Chile",
+			"q4": "Iraq"
+		}
+	},
+	{
+		"quiz": {
+			"q": "Who did Luis Suarez famously attempt to bite when Chelsea played Livepool in 2013?",
+			"q1": "Branislav Ivanovic1",
+			"q2": "Giogio Chiellini",
+			"q3": "David Luiz",
+			"q4": "John Terry"
+		}
+	},
+	{
+		"quiz": {
+			"q": "All the members of a single species that live in a habitat are called the what?",
+			"q1": "Cohort",
+			"q2": "Population1",
+			"q3": "Ecosystem",
+			"q4": "Diversity"
+		}
+	},
+	{
+		"quiz": {
+			"q": "'Disco 2000' was a 1966 hit for which British band?",
+			"q1": "Oasis",
+			"q2": "The Lightning",
+			"q3": "Blur",
+			"q4": "Pulp1"
+		}
+	},
+	{
+		"quiz": {
+			"q": "Who wrote 'The Office ' alongside Stephen Merchant",
+			"q1": "Ricky Gervais1",
+			"q2": "Karl Pilkington",
+			"q3": "Steve Carell",
+			"q4": "Dwight Schrute"
+		}
+	},
+	{
+		"quiz": {
+			"q": "What reflex results in dorsiflexion of the  big toe on stimulating the sole of the foot?",
+			"q1": "Babinski reflex1",
+			"q2": "Toe reflex",
+			"q3": "Bezold reflex",
+			"q4": "Erben reflex"
+		}
+	},
+	{
+		"quiz": {
+			"q": "What part of the body may be affected by floaters",
+			"q1": "Ears",
+			"q2": "Eyes1",
+			"q3": "Liver",
+			"q4": "Rectum"
+		}
+	},
+	{
+		"quiz": {
+			"q": "How old was the oldest verified person who died in 1997?",
+			"q1": "122 years1",
+			"q2": "136 years",
+			"q3": "119 years",
+			"q4": "113 years"
+		}
+	},
+	{
+		"quiz": {
+			"q": "What ate you afraid of if you suffer from 'aichmophobia'?",
+			"q1": "Whisks",
+			"q2": "Spoons",
+			"q3": "Spatulas",
+			"q4": "Knives1"
+		}
+	},
+	{
+		"quiz": {
+			"q": "Beryllium has what symbol in the periodic tahble of elements?",
+			"q1": "Be",
+			"q2": "Bl",
+			"q3": "Br",
+			"q4": "BY"
+		}
+	},
+	{
+		"quiz": {
+			"q": "What kind of alcohol is 2-butanol?",
+			"q1": "Secondary1",
+			"q2": "Primary",
+			"q3": "Tertiary",
+			"q4": "Aliphatic"
+		}
+	},
+	{
+		"quiz": {
+			"q": "The chemical symbols for Tungsten and Silver spell out which word?",
+			"q1": "Tusi",
+			"q2": "Was",
+			"q3": "Tag",
+			"q4": "Wag1"
+		}
+	},
+	{
+		"quiz": {
+			"q": "Will.i.am appeared in which X-Men film?",
+			"q1": "X-Men: Days of future past",
+			"q2": "X-Men",
+			"q3": "X-Men origins: Wolverine1",
+			"q4": "X-Men: First Class"
+		}
+	},
+	{
+		"quiz": {
+			"q": "อาจารย์แบงค์หน้าคล้ายนักฟุตบอลคนใดในพรีเมียร์ลีค",
+			"q1": "เอ็มมานูเอล อเดบายอ",
+			"q2": "พอล ป็อกบา",
+			"q3": "ซอน ฮอง มิน",
+			"q4": "ยายา ตูเร่"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ถ้าแขนโดนตีจะเป็นเครื่องดื่มอะไร",
+			"q1": "กาแฟ",
+			"q2": "โค้ก",
+			"q3": "ชา",
+			"q4": "น้ำส้ม"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ซุปอะไรมีสารอาหารมากที่สุด",
+			"q1": "ซุปไก่",
+			"q2": "สุดไก่สกัด",
+			"q3": "ซุปเห็ด",
+			"q4": "ซุปเปอร์มาเก็ต"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ทำไมบางคนถึงเจ็บหนังหัว",
+			"q1": "เพื่อนหยิก",
+			"q2": "นกจิก",
+			"q3": "ผมหยิก",
+			"q4": "แม่หยิก"
+		}
+	},
+	{
+		"quiz": {
+			"q": "เกาะอะไรมีเสาไฟฟ้าเยอะที่สุด",
+			"q1": "เกาะเสม็ด",
+			"q2": "เกาะล้าน",
+			"q3": "เกาะกลางถนน",
+			"q4": "เกาะช้าง"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ประเทศใดเข้ามาติดต่อค้าขายเป็นประเทศแรกในสมัยอยุธยา",
+			"q1": "อังกฤษ",
+			"q2": "โปรตุเกส",
+			"q3": "ฮอลันดา",
+			"q4": "สเปน"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ดาวดวงใดอยู่ใกล้โลกมากที่สุด",
+			"q1": "ดาวพุธ",
+			"q2": "ดาวศุกร์",
+			"q3": "ดาวอังคาร",
+			"q4": "ดาวพฤหัส"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ประยุทธ์ จันทร์โอชา เป็นนายกรัฐมนตรีของไทยคนที่เท่าไร",
+			"q1": "27",
+			"q2": "28",
+			"q3": "29",
+			"q4": "30"
+		}
+	},
+	{
+		"quiz": {
+			"q": "อาณาจักรใดมีกษัตริย์ปกครองเพียงหนึ่งพระองค์",
+			"q1": "สุโขทัย",
+			"q2": "อยุธยา",
+			"q3": "ธนบุรี",
+			"q4": "รัตนโกสินทร์"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ใครเป่าปี่",
+			"q1": "สุนทรภู่",
+			"q2": "พระอภัยณี",
+			"q3": "ขุนช้าง",
+			"q4": "ขุนแผน"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ลูกของหนุมานกับนางสุพรรณมัฉา ชื่ออะไร",
+			"q1": "มัจฉานุ",
+			"q2": "มัจฉะนุ",
+			"q3": "ชมพูมาน",
+			"q4": "อินุยาฉะ"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ฟุตบอลโลกจัดขึ้นทุกๆกี่ปี",
+			"q1": "1 ปี",
+			"q2": "2 ปี",
+			"q3": "3 ปี",
+			"q4": "4 ปี"
+		}
+	},
+	{
+		"quiz": {
+			"q": "นักเทนนิสชาวไทยคนใดเคยมีอันดับสูงสุดในประวัติศาสตร์ด้วยอันดับ9ของโลก",
+			"q1": "รัชนก อินทนนท์",
+			"q2": "ธีรเทพ วิโนทัย",
+			"q3": "รัชพล ภู่โอบอ้อม(ต๋อง ศิษย์ฉ่อย)",
+			"q4": "ภราดร ศรีชาพันธุ์"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ประเทศอินเดียสกุลเงินอะไร",
+			"q1": "ดอลลาร์สหรัฐ",
+			"q2": "ดอลลาร์รูปี",
+			"q3": "ริงกิต",
+			"q4": "รูปี"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ภาษาjavaเริ่มเป็นที่นิยมแพร่หลายในปีใด",
+			"q1": "1994",
+			"q2": "1995",
+			"q3": "1996",
+			"q4": "1997"
+		}
+	},
+	{
+		"quiz": {
+			"q": "ทีมฟุตบอลใดได้แชมป์พรีเมียร์ลีคมากที่สุด(20สมัย)",
+			"q1": "ลิเวอร์พูล",
+			"q2": "เชลซี",
+			"q3": "แมนยูไนเต็ด",
+			"q4": "อาเซน่อล"
+		}
+	}
+
+
+]
