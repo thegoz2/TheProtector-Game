@@ -10,7 +10,7 @@ import java.util.TimerTask;
 
 //ของจริง
 
-public class GameGUI extends Model implements ActionListener, WindowListener {
+public class GameGUI  implements ActionListener, WindowListener {
     public String check;
     public Timer timer;
     private JFrame frame;
