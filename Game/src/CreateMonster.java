@@ -1,34 +1,19 @@
-public class CreateMonster extends Model{
+public class CreateMonster {
 
 
-//tester
-    public static void main(String[] args){
-
-       Monster bobaphet = new Monster (40) ;
-       bobaphet.setName ("bobaphet");
-        bobaphet.setAtk (3);
-        Monster ajanas = new Monster (30) ;
-        ajanas.setName ("Ajanas");
-        ajanas.setAtk (12);
-        Player Ohme = new Player ();
-        Ohme.setAtk (4);
-        Ohme.setName("Ohme");
-        Ohme.Attacked (bobaphet);//Ohme ถูกตีด้วย bobaphet 50-3
-        Ohme.Attacked (ajanas);//47-15
-        bobaphet.Attacked (Ohme);
-        Ohme.Correct();
-
-        Ohme.Correct();
-
-
-
-        System.out.println (ajanas.getName ()+": "+ajanas.getHp());
-        System.out.println (bobaphet.getName ()+": "+bobaphet.getHp());
-        System.out.println (Ohme.getName()+" เลือด : "+Ohme.getHp()); //hp เหลือ 35
-
-        System.out.println (Ohme.getName()+" score : "+Ohme.getScore());
-
+    public  void CreateMonster(){
+        Monster [] MonsterNum = new Monster[6];
+         MonsterNum[0] =  new Monster (20,10);
+         MonsterNum[0].setName ("Tico");
+        MonsterNum[1] =  new Monster (20,10);
+        MonsterNum[1].setName ("Puddle");
+        MonsterNum[2] =  new Monster (20,10);
+        MonsterNum[2].setName ("Pickel");
+        MonsterNum[3] =  new Monster (20,10);
+        MonsterNum[3].setName ("Beluga");
+        MonsterNum[4] =  new Monster (20,10);
+        MonsterNum[4].setName ("Luna");
+        MonsterNum[5] =  new Monster (50,10);
+        MonsterNum[5].setName ("Sirawich");
     }
-
 }
-

@@ -1,13 +1,13 @@
 import java.lang.*;
 import java.security.PrivateKey.*;
 
-public class  Player extends Model{
+public class  Player extends Model {
 
-    private int Hp=50;
-    private int atk;
+    private int Hp=100;
+    private int atk=10;
     private String name;
 
-public  Player(){}
+    public  Player(){}
     public int getScore(){
         return Score;
     }
@@ -38,10 +38,10 @@ public  Player(){}
 
 
     public int Attacked(Monster m) {
-        int j = m.getHp ();
-        int k = m.getAtk ();
-        if (j - k >= 0) {
-            return this.Hp = Hp - k;
+        int j = this.getHp ();
+        int k = m.getAtk () ;
+        if (j - k >= 0  ) {
+            return this.Hp = Hp - k ;
         } else {
             return this.Hp = 0;
         }

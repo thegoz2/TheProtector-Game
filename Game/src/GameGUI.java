@@ -1,72 +1,79 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.Timer;
-import java.util.TimerTask;
-
+import java.awt.event.*;
+import javax.swing.UIManager.*;
 
 //ของจริง
-
-public class GameGUI  implements ActionListener, WindowListener {
-    public String check;
-    public Timer timer;
+public class GameGUI implements ActionListener, WindowListener {
     private JFrame frame;
-    private CardLayout c1;
-    private JPanel topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel, tandsPanel;
-    private JLabel lb1, lb2, lb3, lb4, scoreLabel, monsterHPLabel;
+    private JPanel topPanel, textPanel, buttonPanel, tandsPanel;
+    private JLabel scoreLabel, monsterHPLabel;
     private JButton bt1, bt2, bt3, bt4;
     private JTextField tf1, tf2;
+    private Image img = Toolkit.getDefaultToolkit().getImage("D:\\IT KMITL ปี 2\\OOP\\ProjectGame (Multi)\\src\\Background.png");
+    private ArrayProblems arrayProblems= new ArrayProblems();
+    private int quiz = 0;
+    private int num = 1;
 
-    private ImageIcon icon1, icon2, icon3, icon4;
     private Font font;
     private CountTime time;
-    private MonsterCard monsterPanel;
     private Thread t;
+    private MonsterCard monsterPanel;
 
     public GameGUI() {
         try {
-            //อันนี้เรียกใช้จาก Library ของ java โดย Default //UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
 
-            //อันนี้เป็นของแถมมากับเจ้า Library ของ java เช่นกัน
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+        //Set Array
 
-            //อันนี้เป็น theme ของระบบ
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e)  { }
+
+        //Set Frame
+        frame = new JFrame("The Protecter");
+
+        //Set CardLayout
+
+        //Set Font
+        font = new Font("TH SarabunPSK", 1, 30);
 
         //SetJFrame
         frame = new JFrame("The Protecter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(2, 1));
-        frame.setSize(1000, 1000);
+        frame.setSize(1200, 1000);
 
-        //SetCardPanel
-        c1 = new CardLayout();
-        cardPanel = new JPanel();
-        cardPanel.setLayout(c1);
         //SetTextPanel
         textPanel = new JPanel();
         textPanel.setLayout(new BorderLayout());
+        textPanel.setOpaque(false);
         //SetTopPanel
         topPanel = new JPanel(new BorderLayout());
+        topPanel.setBackground(new Color(0, 25, 50));
+
 
         //Time&Score Panel
         //Set T&SPanel
         tandsPanel = new JPanel(new BorderLayout(1, 3));
+        tandsPanel.setOpaque(false);
         //SetTime
         time = new CountTime();
         //Thread
         t = new Thread(time);
         t.start();
         //Set Monster HP and My HP
-        font = new Font ( "Helvetica", Font.PLAIN, 30 );
         monsterHPLabel = new JLabel("Monster's HP : 2");
         scoreLabel = new JLabel("Score : 0");
         monsterHPLabel.setFont(font);
         scoreLabel.setFont(font);
+        monsterHPLabel.setForeground(Color.WHITE);
+        scoreLabel.setForeground(Color.WHITE);
         monsterHPLabel.setHorizontalAlignment(JLabel.CENTER);
         monsterHPLabel.setVerticalAlignment(JLabel.CENTER);
         //Add All to Time&Score Panel
@@ -75,47 +82,28 @@ public class GameGUI  implements ActionListener, WindowListener {
         tandsPanel.add(scoreLabel, BorderLayout.EAST);
 
         //TextField
-        tf1 = new JTextField("Problems : ");
+        tf1 = new JTextField("Problems : "+arrayProblems.arrayQuiz[quiz][0]);
         tf2 = new JTextField("Your HP : ");
+        tf1.setFont(font);
+        tf2.setFont(font);
         tf1.setEditable(false);
         tf2.setEditable(false);
         //addTextArea to TextPanel
         textPanel.add(tf1, BorderLayout.CENTER);
         textPanel.add(tf2, BorderLayout.WEST);
 
-        //Icon
-        icon1 = new ImageIcon((getClass().getResource("kul.png")));
-        icon2 = new ImageIcon((getClass().getResource("safi.png")));
-        icon3 = new ImageIcon((getClass().getResource("ala.png")));
-        icon4 = new ImageIcon((getClass().getResource("fata.png")));
-        //Label
-        lb1 = new JLabel(icon1);
-        lb2 = new JLabel(icon2);
-        lb3 = new JLabel(icon3);
-        lb4 = new JLabel(icon4);
-        //addLabel to Panel
-        panel1 = new JPanel();
-        panel2 = new JPanel();
-        panel3 = new JPanel();
-        panel4 = new JPanel();
-        panel1.add(lb1);
-        panel2.add(lb2);
-        panel3.add(lb3);
-        panel4.add(lb4);
-        //addPanel to CardPanel
-        cardPanel.add(panel1, "1");
-        cardPanel.add(panel2, "2");
-        cardPanel.add(panel3, "3");
-        cardPanel.add(panel4, "4");
-
         //ButtonPanel
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(2, 2));
         //Button
-        bt1 = new JButton("Button 1");
-        bt2 = new JButton("Button 2");
-        bt3 = new JButton("Button 3");
-        bt4 = new JButton("Button 4");
+        bt1 = new JButton(arrayProblems.arrayQuiz[quiz][1]);
+        bt2 = new JButton(arrayProblems.arrayQuiz[quiz][2]);
+        bt3 = new JButton(arrayProblems.arrayQuiz[quiz][3]);
+        bt4 = new JButton(arrayProblems.arrayQuiz[quiz][4]);
+        bt1.setFont(font);
+        bt2.setFont(font);
+        bt3.setFont(font);
+        bt4.setFont(font);
         //addActionListener to Button
         bt1.addActionListener(this);
         bt2.addActionListener(this);
@@ -127,65 +115,76 @@ public class GameGUI  implements ActionListener, WindowListener {
         buttonPanel.add(bt3);
         buttonPanel.add(bt4);
 
-        //SetTime
-        time = new CountTime();
-        //Thread
-        Thread t = new Thread(time);
-        t.start();
-
+        //Set MonsterPanel
+        monsterPanel = new MonsterCard();
         //addCardPanel&TextPanel to TopPanel
         topPanel.add(tandsPanel, BorderLayout.NORTH);
-        topPanel.add(cardPanel, BorderLayout.CENTER);
+        topPanel.add(monsterPanel.monCardPanel, BorderLayout.CENTER);
         topPanel.add(textPanel, BorderLayout.SOUTH);
         //addCTopPanel&ButtonPanel to JFrame
         frame.add(topPanel);
         frame.add(buttonPanel);
-        frame.addWindowListener(this);
         frame.setVisible(true);
-        timer = new Timer();
-
 
     }
 
     @Override
-
-
-    public  void actionPerformed(ActionEvent click)  {
+    public void actionPerformed(ActionEvent click) {
         if(click.getSource().equals(bt1)) {
-
-
-            bt1.setBackground (Color.green);
-            timer.schedule(new TimerTask (){
-
-                              @Override
-                              public void run() {
-                                  c1.first(cardPanel);
-                                  bt2.setText("bt6");
-                                  bt3.setText("bt7");
-                                  bt4.setText("bt8");
-                                  bt1.setText("bt5");
-                                  bt1.setBackground (null);
-                                  bt2.setBackground (null);
-                                  bt3.setBackground (null);
-                                  bt4.setBackground (null);
-                              }
-                          },2500);
-
+            if(arrayProblems.arrayQuiz[quiz][1].equals(arrayProblems.arrayQuiz[quiz][5]) && quiz < 14){
+                quiz++;
+                num++;
+                monsterPanel.c.show(monsterPanel.monCardPanel, num+"");
+                tf1.setText(arrayProblems.arrayQuiz[quiz][0]);
+                bt1.setText(arrayProblems.arrayQuiz[quiz][1]);
+                bt2.setText(arrayProblems.arrayQuiz[quiz][2]);
+                bt3.setText(arrayProblems.arrayQuiz[quiz][3]);
+                bt4.setText(arrayProblems.arrayQuiz[quiz][4]);
+                System.out.println(quiz);
+            }
 
         }
         else if(click.getSource().equals(bt2)) {
-            c1.show(cardPanel, "2");
-            bt2.setBackground (Color.red);
-
+            if(arrayProblems.arrayQuiz[quiz][2].equals(arrayProblems.arrayQuiz[quiz][5]) && quiz < 14){
+                quiz++;
+                monsterPanel.c.show(monsterPanel.monCardPanel, "4");
+                num = 4;
+                tf1.setText(arrayProblems.arrayQuiz[quiz][0]);
+                bt1.setText(arrayProblems.arrayQuiz[quiz][1]);
+                bt2.setText(arrayProblems.arrayQuiz[quiz][2]);
+                bt3.setText(arrayProblems.arrayQuiz[quiz][3]);
+                bt4.setText(arrayProblems.arrayQuiz[quiz][4]);
+                System.out.println(quiz);
+            }
 
         }
         else if(click.getSource().equals(bt3)) {
-            c1.show(cardPanel, "3");
-            bt3.setBackground (Color.red);
+            if(arrayProblems.arrayQuiz[quiz][3].equals(arrayProblems.arrayQuiz[quiz][5]) && quiz < 14){
+                quiz++;
+                monsterPanel.c.show(monsterPanel.monCardPanel, "5");
+                num = 5;
+                tf1.setText(arrayProblems.arrayQuiz[quiz][0]);
+                bt1.setText(arrayProblems.arrayQuiz[quiz][1]);
+                bt2.setText(arrayProblems.arrayQuiz[quiz][2]);
+                bt3.setText(arrayProblems.arrayQuiz[quiz][3]);
+                bt4.setText(arrayProblems.arrayQuiz[quiz][4]);
+                System.out.println(quiz);
+            }
+
         }
         else if(click.getSource().equals(bt4)) {
-            c1.last(cardPanel);
-            bt4.setBackground (Color.red);
+            if(arrayProblems.arrayQuiz[quiz][4].equals(arrayProblems.arrayQuiz[quiz][5]) && quiz < 14){
+                quiz++;
+                monsterPanel.c.last(monsterPanel.monCardPanel);
+                num = 6;
+                tf1.setText(arrayProblems.arrayQuiz[quiz][0]);
+                bt1.setText(arrayProblems.arrayQuiz[quiz][1]);
+                bt2.setText(arrayProblems.arrayQuiz[quiz][2]);
+                bt3.setText(arrayProblems.arrayQuiz[quiz][3]);
+                bt4.setText(arrayProblems.arrayQuiz[quiz][4]);
+                System.out.println(quiz);
+            }
+
         }
     }
 
@@ -197,9 +196,6 @@ public class GameGUI  implements ActionListener, WindowListener {
     public static void main(String[] args) {
         new GameGUI();
     }
-
-
-
 
     @Override
     public void windowClosing(WindowEvent e) {

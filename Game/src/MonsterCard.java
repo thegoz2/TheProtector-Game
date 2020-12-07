@@ -20,19 +20,25 @@ public class MonsterCard{
 
         //Set Monster Panel
         monPanel1 = new JPanel();
+        monPanel1.setOpaque(false);
         monPanel2 = new JPanel();
+        monPanel2.setOpaque(false);
         monPanel3 = new JPanel();
+        monPanel3.setOpaque(false);
         monPanel4 = new JPanel();
+        monPanel4.setOpaque(false);
         monPanel5 = new JPanel();
+        monPanel5.setOpaque(false);
         monPanel6 = new JPanel();
+        monPanel6.setOpaque(false);
 
         //Icon Monster
-        icon1 = new ImageIcon((getClass().getResource("xeno.png")));
-        icon2 = new ImageIcon((getClass().getResource("behe.png")));
-        icon3 = new ImageIcon((getClass().getResource("kul.png")));
-        icon4 = new ImageIcon((getClass().getResource("safi.png")));
-        icon5 = new ImageIcon((getClass().getResource("ala.png")));
-        icon6 = new ImageIcon((getClass().getResource("fata.png")));
+        icon1 = new ImageIcon((getClass().getResource("Tico.gif")));
+        icon2 = new ImageIcon((getClass().getResource("Puddle.gif")));
+        icon3 = new ImageIcon((getClass().getResource("Pickle.gif")));
+        icon4 = new ImageIcon((getClass().getResource("Luna.gif")));
+        icon5 = new ImageIcon((getClass().getResource("Compromise.gif")));
+        icon6 = new ImageIcon((getClass().getResource("Val'zak.gif")));
 
         //Set Label
         mon1 = new JLabel(icon1);
@@ -57,6 +63,8 @@ public class MonsterCard{
         monCardPanel.add(monPanel4, "4");
         monCardPanel.add(monPanel5, "5");
         monCardPanel.add(monPanel6, "6");
+
+        monCardPanel.setBackground(new Color(0, 25, 50));
 
     }
 
