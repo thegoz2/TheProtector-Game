@@ -4,7 +4,7 @@ public class  Monster  {
     public String name;
     public int atk;
     public boolean dead=false;
-    public int monsterchange = 0;
+
 
     public Monster(int hp, int atk) {
         this.Hp = hp;
@@ -47,9 +47,7 @@ public class  Monster  {
         }
 
     }
-    public int monsternext(){
-        return this.monsterchange =+ 1;
-    }
+
 
     public boolean monsterDead(Monster m) {
         if (m.getHp () <= 0) {

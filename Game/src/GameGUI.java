@@ -10,7 +10,7 @@ import java.util.TimerTask;
 
 //ของจริง
 
-public class GameGUI extends Model implements ActionListener, WindowListener {
+public class GameGUI   implements ActionListener, WindowListener {
     public int check=0,numMonster=0;
     private int incheck;
     public Timer timer;
@@ -22,7 +22,8 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     private JButton bt1, bt2, bt3, bt4;
     private JTextField tf1, tf2;
     private Monster TicoMonster = new Monster (20,10),pudleMonster = new Monster (20,10);
-
+    public CreateMonster monster = new CreateMonster ();
+    public int monNum = monster.getMonsterchange ();
     private Player Honey = new Player();
 
 
@@ -42,9 +43,8 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
             //อันนี้เป็น theme ของระบบ
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e)  { }
-        TicoMonster.setName ("Tico");
-        pudleMonster.setName("Pudle");
         //SetJFrame
+
         frame = new JFrame("The Protecter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(2, 1));
@@ -70,7 +70,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
         t.start();
         //Set Monster HP and My HP
         font = new Font ( "Helvetica", Font.PLAIN, 30 );
-        monsterHPLabel = new JLabel(TicoMonster.getName ()+"'s HP : "+TicoMonster.getHp ());
+        monsterHPLabel = new JLabel(monster.MonsterNum[monNum].getName ()+"'s HP : "+monster.MonsterNum[monNum].getHp ());
         scoreLabel = new JLabel("Score : 0");
         monsterHPLabel.setFont(font);
         scoreLabel.setFont(font);
@@ -154,7 +154,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     }
     public void PlayerDead(){//เช็ค player เลือด 0ไหม
         if(Honey.getHp () == 0) {
-            System.out.println ("You are DEAD");
+            System.out.println ("Game over");
         }
     }
 
@@ -163,7 +163,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     public void Choice1Incorrect(){
         c1.show(cardPanel, "2");
         bt1.setBackground (Color.red);
-        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        Honey.InCorrect (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
 
@@ -172,7 +172,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     public void Choice2Incorrect(){
         c1.show(cardPanel, "2");
         bt2.setBackground (Color.red);
-        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        Honey.InCorrect (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
 
@@ -181,7 +181,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     public void Choice3Incorrect(){
         c1.show(cardPanel, "2");
         bt3.setBackground (Color.red);
-        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        Honey.InCorrect (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
 
@@ -190,7 +190,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     public void Choice4Incorrect(){
         c1.show(cardPanel, "2");
         bt4.setBackground (Color.red);
-        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        Honey.InCorrect (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
 
@@ -200,9 +200,12 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
 
     public void Choice1Correct(){
         bt1.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
-        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        Honey.Correct (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
             @Override
             public void run() {
                 c1.first(cardPanel);
@@ -215,54 +218,59 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
                 bt3.setBackground (null);
                 bt4.setBackground (null);
                 time.resettime ();
-                if(TicoMonster.monsterDead (TicoMonster)==true){
-                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){
+                    monNum +=1;
+                    monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
                 }
-                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
-                }
+
                 scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
 
             }
         },2500);
-//nextquiz += 1; เปลี่ยนชุดคำถาม
-
 
     }
+
     public void Choice2Correct(){
         bt2.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
-        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        Honey.Correct (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
             @Override
             public void run() {
                 c1.first(cardPanel);
-                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
                 bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
                 bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
                 bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
                 bt1.setBackground (null);
                 bt2.setBackground (null);
                 bt3.setBackground (null);
                 bt4.setBackground (null);
                 time.resettime ();
-                if(TicoMonster.monsterDead (TicoMonster)==true){
-                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){
+                   monNum +=1;
+                    monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
                 }
-                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
-                }
+
                 scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
 
             }
         },2500);
-//nextquiz += 1; เปลี่ยนชุดคำถาม
-        //monsterchange += 1 เปลี่ยนมอนสเตอร์
 
     }
     public void Choice3Correct(){
         bt3.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
-        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        Honey.Correct (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
             @Override
             public void run() {
                 c1.first(cardPanel);
@@ -275,59 +283,58 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
                 bt3.setBackground (null);
                 bt4.setBackground (null);
                 time.resettime ();
-                if(TicoMonster.monsterDead (TicoMonster)==true){
-                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){
+                    monNum +=1;
+                    monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
                 }
-                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
-                }
+
                 scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
 
             }
         },2500);
-//nextquiz += 1; เปลี่ยนชุดคำถาม
-        //monsterchange += 1 เปลี่ยนมอนสเตอร์
+
 
     }
     public void Choice4Correct(){
         bt4.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
-        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        Honey.Correct (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
             @Override
-
             public void run() {
-
                 c1.first(cardPanel);
-                bt2.setText("ใส่คำถามชุดต่อไปในjson[quiz][1]");
-                bt3.setText("ใส่คำถามชุดต่อไปในjson[quiz][2]");
-                bt4.setText("ใส่คำถามชุดต่อไปในjson[quiz][3]");
-                bt1.setText("ใส่คำถามชุดต่อไปในjson[4]");
+                bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
                 bt1.setBackground (null);
                 bt2.setBackground (null);
                 bt3.setBackground (null);
                 bt4.setBackground (null);
                 time.resettime ();
-                if(TicoMonster.monsterDead (TicoMonster)==true){
-                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
-                }
-                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
-                }
-                scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
+                if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){
+                    monNum +=1;
+                    monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
 
+                }
+
+                scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
 
             }
         },2500);
-//nextquiz += 1; เปลี่ยนชุดคำถาม
-        //monsterchange += 1 เปลี่ยนมอนสเตอร์
 
     }
-    public void ChooseCorrect(){
+    public void ChooseCorrect(){ //เลือกคำตอบที่ถูกตามarray
         String ans = "q2";
         if(ans=="q1") { //เช็คคำตอบที่ถูก ข้อหนึ่งถูก
             if(incheck == 1){ //ปุ่มถูกกดจะเปลี่ยนincheck เป็น 1 เอาไว้เช็คปุ่มที่โดนกด
                 Choice1Correct ();//เปลี่ยนสีปุ่ม1 และ ทำฟังชั่นตอบถูก
             }
-              else if (incheck == 2) { //เช็คข้อ2 โดนกดรึป่าว
+            else if (incheck == 2) { //เช็คข้อ2 โดนกดรึป่าว
                 Choice2Incorrect ();//ถ้าโดนกดจะเปลี่ยนสีปุ่มเป็นแดง
             } else if (incheck == 3) {
                 Choice3Incorrect ();
@@ -337,7 +344,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
         }
         else if(ans == "q2"){ // ข้อ2 ถูก
             if(incheck == 2){
-            Choice2Correct ();
+                Choice2Correct ();
             }
             else if (incheck == 1) {
                 Choice1Incorrect ();
@@ -346,7 +353,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
             } else if (incheck == 4) {
                 Choice4Incorrect ();
             }
-                }
+        }
         else if(ans == "q3"){//ข้อ 3 ถูก
             if(incheck == 3){
                 Choice3Correct ();
@@ -358,7 +365,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
             } else if (incheck == 4) {
                 Choice4Incorrect ();
             }
-                }
+        }
         else if(ans == "q4"){ //ข้อ 4 ถูก
             if(incheck == 4){
                 Choice4Correct ();
@@ -370,7 +377,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
             } else if (incheck == 1) {
                 Choice1Incorrect ();
             }}
-            }
+    }
 
     @Override
 
