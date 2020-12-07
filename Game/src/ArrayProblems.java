@@ -1,7 +1,13 @@
 public class ArrayProblems {
+<<<<<<< HEAD
     public String [][]arrayQuiz = new String[15][6];
 
     public ArrayProblems(){
+=======
+    public static void main(String[] args) {
+        String [][]arrayQuiz = new String[15][6];
+
+>>>>>>> 0215b076dc65719eaff31ebccff65290e73ef7fd
         //Quiz 1
         arrayQuiz[0][0] = new String("1. ถ้าแขนโดนตีจะเป็นเครื่องดื่มอะไร");
         arrayQuiz[0][1] = new String("กาแฟ");
@@ -117,11 +123,25 @@ public class ArrayProblems {
         arrayQuiz[13][5] = new String("แมนยูไนเต็ด");
 
         //Quiz 15
+<<<<<<< HEAD
         arrayQuiz[14][0] = new String("15. ทำไมบางคนถึงเจ็บหนังหัว");
+=======
+        arrayQuiz[14][0] = new String("1. ทำไมบางคนถึงเจ็บหนังหัว");
+>>>>>>> 0215b076dc65719eaff31ebccff65290e73ef7fd
         arrayQuiz[14][1] = new String("เพื่อนหยิก");
         arrayQuiz[14][2] = new String("นกจิก");
         arrayQuiz[14][3] = new String("ผมหยิก");
         arrayQuiz[14][4] = new String("แม่หยิก");
         arrayQuiz[14][5] = new String("ผมหยิก");
+<<<<<<< HEAD
+=======
+
+        for(int i=0; i<arrayQuiz.length; i++) {
+            for(int j=0; j<arrayQuiz[i].length; j++) {
+                System.out.println(arrayQuiz[i][j]);
+            }
+        }
+
+>>>>>>> 0215b076dc65719eaff31ebccff65290e73ef7fd
     }
 }
