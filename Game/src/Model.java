@@ -1,6 +1,6 @@
 import java.io.StreamCorruptedException;
 
-public class Model  {
+public class Model   {
 
     public  int Combo = 1;
     public int Score = 0;
@@ -35,5 +35,6 @@ public class Model  {
         }
 
     }
+
 
 

@@ -11,7 +11,7 @@ import java.util.TimerTask;
 //ของจริง
 
 public class GameGUI extends Model implements ActionListener, WindowListener {
-    public String check;
+    public int check=0,numMonster=0;
     public Timer timer;
     private JFrame frame;
     private CardLayout c1;
@@ -19,7 +19,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     private JLabel lb1, lb2, lb3, lb4, scoreLabel, monsterHPLabel;
     private JButton bt1, bt2, bt3, bt4;
     private JTextField tf1, tf2;
-    private Monster TicoMonster = new Monster (20,10);
+    private Monster TicoMonster = new Monster (20,10),pudleMonster = new Monster (20,10);
 
     private Player Honey = new Player();
 
@@ -41,6 +41,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e)  { }
 TicoMonster.setName ("Tico");
+        pudleMonster.setName("Pudle");
         //SetJFrame
         frame = new JFrame("The Protecter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +63,7 @@ TicoMonster.setName ("Tico");
         tandsPanel = new JPanel(new BorderLayout(1, 3));
         //SetTime
         time = new CountTime();
+
         //Thread
         t = new Thread(time);
         t.start();
@@ -132,11 +134,7 @@ TicoMonster.setName ("Tico");
         buttonPanel.add(bt3);
         buttonPanel.add(bt4);
 
-        //SetTime
-        time = new CountTime();
-        //Thread
-        Thread t = new Thread(time);
-        t.start();
+
 
         //addCardPanel&TextPanel to TopPanel
         topPanel.add(tandsPanel, BorderLayout.NORTH);
@@ -150,62 +148,103 @@ TicoMonster.setName ("Tico");
         timer = new Timer();
 
 
+
+
+    }
+    public void PlayerDead(){//เช็ค player เลือด 0ไหม
+        if(Honey.getHp () == 0) {
+            System.out.println ("You are DEAD");
+        }
     }
 
+
+
+    public void Choice1Incorrect(){
+        c1.show(cardPanel, "2");
+        bt1.setBackground (Color.red);
+        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
+        scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
+
+        PlayerDead ();//player เลือดเหลือ 0 ตาย
+    }
+    public void Choice2Incorrect(){
+        c1.show(cardPanel, "2");
+        bt2.setBackground (Color.red);
+        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
+        scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
+
+        PlayerDead ();//player เลือดเหลือ 0 ตาย
+    }
+    public void Choice3Incorrect(){
+        c1.show(cardPanel, "2");
+        bt3.setBackground (Color.red);
+        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
+        scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
+
+        PlayerDead ();//player เลือดเหลือ 0 ตาย
+    }
+    public void Choice4Incorrect(){
+        c1.show(cardPanel, "2");
+        bt4.setBackground (Color.red);
+        Honey.InCorrect (Honey,TicoMonster); //ลดเหลือดplayer และ ลด คะแนน
+        tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
+        scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
+
+        PlayerDead ();//player เลือดเหลือ 0 ตาย
+    }
+
+    public void ChoiceCorrect(){
+        bt1.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
+        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+            @Override
+            public void run() {
+                c1.first(cardPanel);
+                bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setBackground (null);
+                bt2.setBackground (null);
+                bt3.setBackground (null);
+                bt4.setBackground (null);
+                time.resettime ();
+                 if(TicoMonster.monsterDead (TicoMonster)==true){
+                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                }
+                 else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
+                 }
+                scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
+
+            }
+        },2500);
+//nextquiz += 1; เปลี่ยนชุดคำถาม
+        //monsterchange += 1 เปลี่ยนมอนสเตอร์
+
+    }
     @Override
 
 
     public  void actionPerformed(ActionEvent click)  {
         if(click.getSource().equals(bt1)) {
 
-            bt1.setBackground (Color.green);
-            Honey.Correct (Honey,TicoMonster);
-
-            tf2.setText ("Your HP : "+Honey.getHp ());
-            timer.schedule(new TimerTask (){
-
-                @Override
-                public void run() {c1.first(cardPanel);
-                    bt2.setText("bt6");
-                    bt3.setText("bt7");
-                    bt4.setText("bt8");
-                    bt1.setText("bt5");
-                    bt1.setBackground (null);
-                    bt2.setBackground (null);
-                    bt3.setBackground (null);
-                    bt4.setBackground (null);
-                }
-            },2500);
-
-
-            monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));
-
-            scoreLabel.setText ("Score : "+Honey.getScore ());
+            ChoiceCorrect();
 
         }
         else if(click.getSource().equals(bt2)) {
-            c1.show(cardPanel, "2");
-            bt2.setBackground (Color.red);
-            Honey.InCorrect (Honey,TicoMonster);
-            tf2.setText ("Your HP : "+Honey.getHp ());
-            scoreLabel.setText ("Score : "+Honey.getScore ());
 
+    Choice2Incorrect ();
         }
         else if(click.getSource().equals(bt3)) {
-            c1.show(cardPanel, "2");
-            bt3.setBackground (Color.red);
-            Honey.InCorrect (Honey,TicoMonster);
-            tf2.setText ("Your HP : "+Honey.getHp ());
-            scoreLabel.setText ("Score : "+Honey.getScore ());
+            Choice3Incorrect ();
 
         }
         else if(click.getSource().equals(bt4)) {
-            c1.show(cardPanel, "2");
-            bt4.setBackground (Color.red);
-            Honey.InCorrect (Honey,TicoMonster);
-            System.out.println (Honey.getHp ());
-            tf2.setText ("Your HP : "+Honey.getHp ());
-            scoreLabel.setText ("Score : "+Honey.getScore ());
+          Choice4Incorrect ();
 
         }
     }
