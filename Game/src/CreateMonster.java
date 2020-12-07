@@ -1,26 +1,29 @@
 public class CreateMonster extends Model{
 
 
-//tester
+    //tester
     public static void main(String[] args){
 
-       Monster bobaphet = new Monster (40) ;
-       bobaphet.setName ("bobaphet");
-        bobaphet.setAtk (3);
-        Monster ajanas = new Monster (30) ;
+        Monster bobaphet = new Monster (40,10) ;
+        bobaphet.setName ("bobaphet");
+
+        Monster ajanas = new Monster (30,10) ;
         ajanas.setName ("Ajanas");
-        ajanas.setAtk (12);
+
         Player Ohme = new Player ();
-        Ohme.setAtk (4);
+
         Ohme.setName("Ohme");
-        Ohme.Attacked (bobaphet);//Ohme ถูกตีด้วย bobaphet 50-3
-        Ohme.Attacked (ajanas);//47-15
-        bobaphet.Attacked (Ohme);
-        Ohme.Correct();
 
-        Ohme.Correct();
+        Ohme.Correct(Ohme,ajanas);
 
 
+
+        Ohme.InCorrect (Ohme,ajanas);
+        Ohme.InCorrect (Ohme,ajanas);
+        Ohme.InCorrect (Ohme,ajanas);Ohme.InCorrect (Ohme,ajanas);
+        Ohme.InCorrect (Ohme,ajanas);
+        Ohme.InCorrect (Ohme,ajanas);
+        Ohme.InCorrect (Ohme,ajanas);
 
         System.out.println (ajanas.getName ()+": "+ajanas.getHp());
         System.out.println (bobaphet.getName ()+": "+bobaphet.getHp());
@@ -31,4 +34,3 @@ public class CreateMonster extends Model{
     }
 
 }
-

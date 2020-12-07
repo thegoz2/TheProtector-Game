@@ -1,11 +1,13 @@
 import java.lang.*;
-public class  Monster {
+public class  Monster  {
     private int Hp;
     public String name;
-    public  int atk ;
+    public int atk;
+    boolean dead=false;
 
-    public Monster(int hp) {
-    this.Hp = hp;
+    public Monster(int hp, int atk) {
+        this.Hp = hp;
+        this.atk = atk;
 
     }
 
@@ -22,7 +24,7 @@ public class  Monster {
         return Hp;
     }
 
-    public  int getAtk() {
+    public int getAtk() {
         return atk;
     }
 
@@ -35,14 +37,20 @@ public class  Monster {
     }
 
     public int Attacked(Player p) {
-       int j = p.getHp ();
-       int k = p.getAtk ();
-       if(j-k>=0){
-           return this.Hp = Hp-k;
-       }
-        else{
+        int j = this.getHp ();
+        int k = p.getAtk ();
+        if (j - k >= 0) {
+            return this.Hp = Hp - k;
+        } else {
             return this.Hp = 0;
-       }
+        }
 
+    }
+
+    public boolean monsterDead(Monster m) {
+        if (m.getHp () <= 0) {
+            return dead=true;
+        }
+        return dead=false;
     }
 }
