@@ -14,6 +14,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     public int check=0,numMonster=0;
     private int incheck;
     public Timer timer;
+    //monsterchange += 1 เปลี่ยนมอนสเตอร์
     private JFrame frame;
     private CardLayout c1;
     private JPanel topPanel, cardPanel, textPanel, panel1, panel2, panel3, panel4, buttonPanel, tandsPanel;
@@ -224,7 +225,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
             }
         },2500);
 //nextquiz += 1; เปลี่ยนชุดคำถาม
-        //monsterchange += 1 เปลี่ยนมอนสเตอร์
+
 
     }
     public void Choice2Correct(){
@@ -293,12 +294,14 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
             @Override
+
             public void run() {
+
                 c1.first(cardPanel);
-                bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
-                bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
-                bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
-                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt2.setText("ใส่คำถามชุดต่อไปในjson[quiz][1]");
+                bt3.setText("ใส่คำถามชุดต่อไปในjson[quiz][2]");
+                bt4.setText("ใส่คำถามชุดต่อไปในjson[quiz][3]");
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[4]");
                 bt1.setBackground (null);
                 bt2.setBackground (null);
                 bt3.setBackground (null);
@@ -311,6 +314,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
                 }
                 scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
 
+
             }
         },2500);
 //nextquiz += 1; เปลี่ยนชุดคำถาม
@@ -319,19 +323,19 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
     }
     public void ChooseCorrect(){
         String ans = "q2";
-        if(ans=="q1") {
-            if(incheck == 1){
-                Choice1Correct ();
+        if(ans=="q1") { //เช็คคำตอบที่ถูก ข้อหนึ่งถูก
+            if(incheck == 1){ //ปุ่มถูกกดจะเปลี่ยนincheck เป็น 1 เอาไว้เช็คปุ่มที่โดนกด
+                Choice1Correct ();//เปลี่ยนสีปุ่ม1 และ ทำฟังชั่นตอบถูก
             }
-              else if (incheck == 2) {
-                Choice2Incorrect ();
+              else if (incheck == 2) { //เช็คข้อ2 โดนกดรึป่าว
+                Choice2Incorrect ();//ถ้าโดนกดจะเปลี่ยนสีปุ่มเป็นแดง
             } else if (incheck == 3) {
                 Choice3Incorrect ();
             } else if (incheck == 4) {
                 Choice4Incorrect ();
             }
         }
-        else if(ans == "q2"){
+        else if(ans == "q2"){ // ข้อ2 ถูก
             if(incheck == 2){
             Choice2Correct ();
             }
@@ -343,7 +347,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
                 Choice4Incorrect ();
             }
                 }
-        else if(ans == "q3"){
+        else if(ans == "q3"){//ข้อ 3 ถูก
             if(incheck == 3){
                 Choice3Correct ();
             }
@@ -355,7 +359,7 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
                 Choice4Incorrect ();
             }
                 }
-        else if(ans == "q4"){
+        else if(ans == "q4"){ //ข้อ 4 ถูก
             if(incheck == 4){
                 Choice4Correct ();
             }

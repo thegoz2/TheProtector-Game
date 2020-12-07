@@ -1,36 +1,19 @@
-public class CreateMonster extends Model{
+public class CreateMonster {
 
 
-    //tester
-    public static void main(String[] args){
-
-        Monster bobaphet = new Monster (40,10) ;
-        bobaphet.setName ("bobaphet");
-
-        Monster ajanas = new Monster (30,10) ;
-        ajanas.setName ("Ajanas");
-
-        Player Ohme = new Player ();
-
-        Ohme.setName("Ohme");
-
-        Ohme.Correct(Ohme,ajanas);
-
-
-
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-
-        System.out.println (ajanas.getName ()+": "+ajanas.getHp());
-        System.out.println (bobaphet.getName ()+": "+bobaphet.getHp());
-        System.out.println (Ohme.getName()+" เลือด : "+Ohme.getHp()); //hp เหลือ 35
-
-        System.out.println (Ohme.getName()+" score : "+Ohme.getScore());
-
+    public  void CreateMonster(){
+        Monster [] MonsterNum = new Monster[6];
+         MonsterNum[0] =  new Monster (20,10);
+         MonsterNum[0].setName ("Tico");
+        MonsterNum[1] =  new Monster (20,10);
+        MonsterNum[1].setName ("Puddle");
+        MonsterNum[2] =  new Monster (20,10);
+        MonsterNum[2].setName ("Pickel");
+        MonsterNum[3] =  new Monster (20,10);
+        MonsterNum[3].setName ("Beluga");
+        MonsterNum[4] =  new Monster (20,10);
+        MonsterNum[4].setName ("Luna");
+        MonsterNum[5] =  new Monster (50,10);
+        MonsterNum[5].setName ("Sirawich");
     }
-
 }

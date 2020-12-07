@@ -3,7 +3,8 @@ public class  Monster  {
     private int Hp;
     public String name;
     public int atk;
-    boolean dead=false;
+    public boolean dead=false;
+    public int monsterchange = 0;
 
     public Monster(int hp, int atk) {
         this.Hp = hp;
@@ -45,6 +46,9 @@ public class  Monster  {
             return this.Hp = 0;
         }
 
+    }
+    public int monsternext(){
+        return this.monsterchange =+ 1;
     }
 
     public boolean monsterDead(Monster m) {
