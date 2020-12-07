@@ -4,13 +4,9 @@ public class  Monster  {
     public String name;
     public int atk;
     public boolean dead=false;
-<<<<<<< HEAD
     public int monsterchange = 0;
 
-=======
 
-
->>>>>>> 0215b076dc65719eaff31ebccff65290e73ef7fd
     public Monster(int hp, int atk) {
         this.Hp = hp;
         this.atk = atk;
@@ -52,13 +48,7 @@ public class  Monster  {
         }
 
     }
-<<<<<<< HEAD
-    public int monsternext(){
-        return this.monsterchange =+ 1;
-    }
-=======
 
->>>>>>> 0215b076dc65719eaff31ebccff65290e73ef7fd
 
     public boolean monsterDead(Monster m) {
         if (m.getHp () <= 0) {
