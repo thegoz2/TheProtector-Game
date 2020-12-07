@@ -12,6 +12,7 @@ import java.util.TimerTask;
 
 public class GameGUI extends Model implements ActionListener, WindowListener {
     public int check=0,numMonster=0;
+    private int incheck;
     public Timer timer;
     private JFrame frame;
     private CardLayout c1;
@@ -195,7 +196,8 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
         PlayerDead ();//player เลือดเหลือ 0 ตาย
     }
 
-    public void ChoiceCorrect(){
+
+    public void Choice1Correct(){
         bt1.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
         Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
@@ -225,25 +227,170 @@ public class GameGUI extends Model implements ActionListener, WindowListener {
         //monsterchange += 1 เปลี่ยนมอนสเตอร์
 
     }
+    public void Choice2Correct(){
+        bt2.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
+        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+            @Override
+            public void run() {
+                c1.first(cardPanel);
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setBackground (null);
+                bt2.setBackground (null);
+                bt3.setBackground (null);
+                bt4.setBackground (null);
+                time.resettime ();
+                if(TicoMonster.monsterDead (TicoMonster)==true){
+                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                }
+                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
+                }
+                scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
+
+            }
+        },2500);
+//nextquiz += 1; เปลี่ยนชุดคำถาม
+        //monsterchange += 1 เปลี่ยนมอนสเตอร์
+
+    }
+    public void Choice3Correct(){
+        bt3.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
+        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+            @Override
+            public void run() {
+                c1.first(cardPanel);
+                bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setBackground (null);
+                bt2.setBackground (null);
+                bt3.setBackground (null);
+                bt4.setBackground (null);
+                time.resettime ();
+                if(TicoMonster.monsterDead (TicoMonster)==true){
+                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                }
+                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
+                }
+                scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
+
+            }
+        },2500);
+//nextquiz += 1; เปลี่ยนชุดคำถาม
+        //monsterchange += 1 เปลี่ยนมอนสเตอร์
+
+    }
+    public void Choice4Correct(){
+        bt4.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
+        Honey.Correct (Honey,TicoMonster);//บวกคะแนน และ ลดเลือดมอน
+        tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
+        timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+            @Override
+            public void run() {
+                c1.first(cardPanel);
+                bt2.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt3.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt4.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setText("ใส่คำถามชุดต่อไปในjson[0]");
+                bt1.setBackground (null);
+                bt2.setBackground (null);
+                bt3.setBackground (null);
+                bt4.setBackground (null);
+                time.resettime ();
+                if(TicoMonster.monsterDead (TicoMonster)==true){
+                    monsterHPLabel.setText (pudleMonster.getName ()+"'s HP : "+Integer.toString(pudleMonster.getHp ()));//ใส่ monster
+                }
+                else {  monsterHPLabel.setText (TicoMonster.getName ()+"'s HP : "+Integer.toString(TicoMonster.getHp ()));//แสดงเลือมอน
+                }
+                scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
+
+            }
+        },2500);
+//nextquiz += 1; เปลี่ยนชุดคำถาม
+        //monsterchange += 1 เปลี่ยนมอนสเตอร์
+
+    }
+    public void ChooseCorrect(){
+        String ans = "q2";
+        if(ans=="q1") {
+            if(incheck == 1){
+                Choice1Correct ();
+            }
+              else if (incheck == 2) {
+                Choice2Incorrect ();
+            } else if (incheck == 3) {
+                Choice3Incorrect ();
+            } else if (incheck == 4) {
+                Choice4Incorrect ();
+            }
+        }
+        else if(ans == "q2"){
+            if(incheck == 2){
+            Choice2Correct ();
+            }
+            else if (incheck == 1) {
+                Choice1Incorrect ();
+            } else if (incheck == 3) {
+                Choice3Incorrect ();
+            } else if (incheck == 4) {
+                Choice4Incorrect ();
+            }
+                }
+        else if(ans == "q3"){
+            if(incheck == 3){
+                Choice3Correct ();
+            }
+            else if (incheck == 2) {
+                Choice2Incorrect ();
+            } else if (incheck == 1) {
+                Choice1Incorrect ();
+            } else if (incheck == 4) {
+                Choice4Incorrect ();
+            }
+                }
+        else if(ans == "q4"){
+            if(incheck == 4){
+                Choice4Correct ();
+            }
+            else if (incheck == 2) {
+                Choice2Incorrect ();
+            } else if (incheck == 3) {
+                Choice3Incorrect ();
+            } else if (incheck == 1) {
+                Choice1Incorrect ();
+            }}
+            }
+
     @Override
 
 
     public  void actionPerformed(ActionEvent click)  {
         if(click.getSource().equals(bt1)) {
+            incheck = 1;
+            ChooseCorrect();
 
-            ChoiceCorrect();
 
         }
         else if(click.getSource().equals(bt2)) {
+            incheck = 2;
+            ChooseCorrect();
 
-            Choice2Incorrect ();
         }
         else if(click.getSource().equals(bt3)) {
-            Choice3Incorrect ();
+            incheck = 3 ;
+            ChooseCorrect();
 
         }
         else if(click.getSource().equals(bt4)) {
-            Choice4Incorrect ();
+            incheck = 4;
+            ChooseCorrect();
 
         }
     }
