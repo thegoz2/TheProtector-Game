@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MonsterCard{
     private JFrame frame;
+    public  Timer timer = new Timer ();
     private JLabel mon1, mon2, mon3, mon4, mon5, boss;
     private ImageIcon icon1, icon2, icon3, icon4, icon5, icon6;
 
@@ -64,7 +67,25 @@ public class MonsterCard{
         monCardPanel.add(monPanel5, "5");
         monCardPanel.add(monPanel6, "6");
 
-        monCardPanel.setBackground(new Color(0, 25, 50));
+        monCardPanel.setBackground(new Color(0, 25, 50));//เปลี่ยนสีมอน
+
+
+    }
+
+    public void HitEffect(){
+        monCardPanel.setBackground (Color.red);
+        monCardPanel.setBackground (Color.red);
+        timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+        @Override
+
+        public void run() {
+
+            monCardPanel.setBackground (new Color(0, 25, 50));
+            monCardPanel.setBackground (new Color(0, 25, 50));
+        }
+        },100);
+
+
 
     }
 

@@ -30,13 +30,6 @@ public class  Monster  {
         return atk;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
-
-    public void setHp(int hp) {
-        this.Hp = hp;
-    }
 
     public int Attacked(Player p) {
         int j = this.getHp ();

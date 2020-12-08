@@ -8,12 +8,10 @@ import java.util.TimerTask;
 //ของจริง
 
 
-public class GameGUI   implements ActionListener, WindowListener {
-    public int check=0,numMonster=0;
-    private int incheck;
-    public Timer timer = new Timer();;
-    //monsterchange += 1 เปลี่ยนมอนสเตอร์
+public class GameGUI  implements ActionListener, WindowListener {
 
+    private int incheck;
+    public Timer timer = new Timer();
     private JFrame frame;
     private JPanel topPanel, textPanel, buttonPanel, tandsPanel;
     private JLabel scoreLabel, monsterHPLabel;
@@ -31,9 +29,12 @@ public class GameGUI   implements ActionListener, WindowListener {
     private Font font;
     private CountTime time;
     private Thread t;
-    private MonsterCard monsterPanel;
+    private MonsterCard monsterPanel ;
+
+
 
     public GameGUI() {
+
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -159,7 +160,7 @@ public class GameGUI   implements ActionListener, WindowListener {
         Honey.InCorrect (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
-
+        monsterPanel.HitEffect ();
         PlayerDead ();//player เลือดเหลือ 0 ตาย
     }
 
@@ -172,6 +173,7 @@ public class GameGUI   implements ActionListener, WindowListener {
         Honey.Correct (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
         monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+
 
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
 
@@ -188,7 +190,7 @@ public class GameGUI   implements ActionListener, WindowListener {
                 bt3.setBackground (null);
                 bt4.setBackground (null);
                 time.resettime ();
-                if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){
+                if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){ //เช็คว่าตายไหม ถ้าตาย จะเปลี่ยนมอน
                     monNum +=1;
                     nextMon++;
                     monsterPanel.c.show(monsterPanel.monCardPanel, nextMon+"");
@@ -202,6 +204,89 @@ public class GameGUI   implements ActionListener, WindowListener {
         },2500);
 
     }
+
+public void UnBlcokBotton1() {
+
+    bt2.setEnabled (false);
+    bt3.setEnabled (false);
+    bt4.setEnabled (false);
+    timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
+        @Override
+        public void run() {
+
+
+            bt2.setEnabled (true);
+            bt3.setEnabled (true);
+            bt4.setEnabled (true);
+
+        }
+
+
+    }, 2500);
+}
+    public void UnBlcokBotton2() {
+
+        bt1.setEnabled (false);
+        bt3.setEnabled (false);
+        bt4.setEnabled (false);
+        timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
+            @Override
+            public void run() {
+
+
+                bt1.setEnabled (true);
+                bt3.setEnabled (true);
+                bt4.setEnabled (true);
+
+            }
+
+
+        }, 2500);
+    }
+    public void UnBlcokBotton3() {
+
+        bt2.setEnabled (false);
+        bt1.setEnabled (false);
+        bt4.setEnabled (false);
+        timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
+            @Override
+            public void run() {
+
+
+                bt2.setEnabled (true);
+                bt1.setEnabled (true);
+                bt4.setEnabled (true);
+
+            }
+
+
+        }, 2500);
+    }
+    public void UnBlcokBotton4() {
+
+        bt2.setEnabled (false);
+        bt3.setEnabled (false);
+        bt1.setEnabled (false);
+        timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
+
+            @Override
+            public void run() {
+
+
+                bt2.setEnabled (true);
+                bt3.setEnabled (true);
+                bt1.setEnabled (true);
+
+            }
+
+
+        }, 2500);
+    }
+
+
     public void ChooseCorrect(){ //เลือกคำตอบที่ถูกตามarray
         String ans = arrayProblems.arrayQuiz[quiz][5];
 
@@ -209,6 +294,7 @@ public class GameGUI   implements ActionListener, WindowListener {
             if(incheck == 1){ //ปุ่มถูกกดจะเปลี่ยนincheck เป็น 1 เอาไว้เช็คปุ่มที่โดนกด
                 bt1.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
                 ChoiceCorrect ();//เปลี่ยนสีปุ่ม1 และ ทำฟังชั่นตอบถูก
+                UnBlcokBotton1 ();
             }
             else if (incheck == 2) { //เช็คข้อ2 โดนกดรึป่าว
 
@@ -229,6 +315,7 @@ public class GameGUI   implements ActionListener, WindowListener {
             if(incheck == 2){
                 bt2.setBackground (Color.green);
                 ChoiceCorrect ();
+                UnBlcokBotton2 ();
             }
             else if (incheck == 1) {
                 bt1.setBackground (Color.red);
@@ -245,7 +332,7 @@ public class GameGUI   implements ActionListener, WindowListener {
             if(incheck == 3){
                 bt3.setBackground (Color.green);
                 ChoiceCorrect ();
-
+                UnBlcokBotton3 ();
             }
             else if (incheck == 2) {
                 bt2.setBackground (Color.red);
@@ -262,6 +349,7 @@ public class GameGUI   implements ActionListener, WindowListener {
             if(incheck == 4){
                 bt4.setBackground (Color.green);
                 ChoiceCorrect ();
+                UnBlcokBotton4 ();
 
             }
             else if (incheck == 2) {

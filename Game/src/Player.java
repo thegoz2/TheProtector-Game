@@ -12,13 +12,8 @@ public class  Player extends Model {
         return Score;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public int getHp() {
         return Hp;
@@ -28,13 +23,7 @@ public class  Player extends Model {
         return atk;
     }
 
-    public void setAtk(int Atk) {
-        this.atk = Atk;
-    }
 
-    public void setHp(int hp) {
-        this.Hp = hp;
-    }
 
 
     public int Attacked(Monster m) {
@@ -47,4 +36,10 @@ public class  Player extends Model {
         }
 
     }
+    //public void setName(String name) { เก็บไว้ใช้เพื่อหน้าใส่ชื่อ
+    //    this.name = name;
+    // }
+    // public String getName() {
+    //        return name;
+    //    }
 }
