@@ -1,36 +1,30 @@
-public class Tester extends Model{
+import javax.swing.*;
+import java.awt.*;
 
 
-    //tester
-    public static void main(String[] args){
+public class Tester extends JFrame{
 
-        Monster bobaphet = new Monster (40,10) ;
-        bobaphet.setName ("bobaphet");
+    public Tester(String title) throws HeadlessException {
+        super(title);
+        InitialElements();
+    }
 
-        Monster ajanas = new Monster (30,10) ;
-        ajanas.setName ("Ajanas");
-
-        Player Ohme = new Player ();
-
-        Ohme.setName("Ohme");
-
-        Ohme.Correct(Ohme,ajanas);
-
-
-
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-        Ohme.InCorrect (Ohme,ajanas);
-
-        System.out.println (ajanas.getName ()+": "+ajanas.getHp());
-        System.out.println (bobaphet.getName ()+": "+bobaphet.getHp());
-        System.out.println (Ohme.getName()+" เลือด : "+Ohme.getHp()); //hp เหลือ 35
-
-        System.out.println (Ohme.getName()+" score : "+Ohme.getScore());
+    private void InitialElements(){
+        setSize(300, 250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        // This one does not work
+        // getContentPane().setBackground(new Color(70, 80, 70));
 
     }
 
+    public void paint(Graphics draw){
+        //Here you can perform any drawing like an oval...
+        draw.fillOval(40, 40, 60, 50);
+
+        getContentPane().setBackground(new Color(70,80,70));
+    }
+    public static void main(String[] args) {
+        new Tester("s");
+    }
 }
