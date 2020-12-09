@@ -12,11 +12,11 @@ public class CreateMonster {
         MonsterNum[2] =  new Monster (20,10);
         MonsterNum[2].setName ("Pickel");
         MonsterNum[3] =  new Monster (20,10);
-        MonsterNum[3].setName ("Luna");
+        MonsterNum[3].setName ("Beluga");
         MonsterNum[4] =  new Monster (20,10);
-        MonsterNum[4].setName ("Bunion");
+        MonsterNum[4].setName ("Luna");
         MonsterNum[5] =  new Monster (50,10);
-        MonsterNum[5].setName ("Val'zak");
+        MonsterNum[5].setName ("Sirawich");
 
 
     }

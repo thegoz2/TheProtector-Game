@@ -22,7 +22,7 @@ public class ArrayProblems {
 
         //Quiz 3
         arrayQuiz[2][0] = new String("3. เกาะอะไรมีเสาไฟฟ้าเยอะที่สุด");
-        arrayQuiz[2][1] = new String("เกาะเสม็ด");
+        arrayQuiz[2][1] = new String("กาะเสม็ด");
         arrayQuiz[2][2] = new String("เกาะล้าน");
         arrayQuiz[2][3] = new String("เกาะกลางถนน");
         arrayQuiz[2][4] = new String("เกาะช้าง");
@@ -103,7 +103,7 @@ public class ArrayProblems {
         arrayQuiz[11][5] = new String("a4");
 
         //Quiz 13
-        arrayQuiz[12][0] = new String("13. ภาษา Java เริ่มเป็นที่นิยมแพร่หลายในปีใด");
+        arrayQuiz[12][0] = new String("13. ภาษาjavaเริ่มเป็นที่นิยมแพร่หลายในปีใด");
         arrayQuiz[12][1] = new String("1994");
         arrayQuiz[12][2] = new String("1995");
         arrayQuiz[12][3] = new String("1996");
