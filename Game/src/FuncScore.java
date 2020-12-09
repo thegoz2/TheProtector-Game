@@ -5,8 +5,6 @@ public class FuncScore {
 
     public  int Combo = 1;
     public int Score = 0;
-
-
     public int getScore() {
         return Score;
     }
@@ -22,16 +20,13 @@ public class FuncScore {
             p.Attacked (m);
             return this.Score = getScore () - 100 ;
         }
-
     }
     public int IncreaseScore(Player p,Monster m){
-
         this.Score=getScore ()+(100*this.Combo);
         this.Combo += 1; //เพิ่มคะแนนที่ได้รับจากการตอบถูกต่อเนื่อง
         m.Attacked (p);
         return Score;
     }
-
 }
 
 
