@@ -26,11 +26,11 @@ public class  Player extends FuncScore {
 
 
 
-    public int Attacked(Monster m) {
-        int j = this.getHp ();
+    public int Attacked(Monster m) { //ผู้เล่นโดนตี
+        int j = this.getHp (); //
         int k = m.getAtk () ;
-        if (j - k >= 0  ) {
-            return this.Hp = Hp - k ;
+        if (j - k >= 0  ) { //เช็คว่าติดลบไหม
+            return this.Hp = Hp - k ;//คืนค่าhp ที่โดนตีแล้ว
         } else {
             return this.Hp = 0;
         }

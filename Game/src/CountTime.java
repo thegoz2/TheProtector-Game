@@ -6,9 +6,6 @@ import java.util.Calendar;
 public class CountTime extends JLabel implements Runnable{
     public int num = 20;
     public int sec ;
-
-
-
     public CountTime(){
 
         this.setForeground(Color.WHITE);
@@ -21,8 +18,6 @@ public class CountTime extends JLabel implements Runnable{
     }
     public int resettime(){//reset เวลา
         return num = 21;
-
-
     }
 
 
@@ -41,9 +36,7 @@ public class CountTime extends JLabel implements Runnable{
                 System.out.println("Sec : " +sec+ " Num : " +num);
                 if(num == 0){//เวลาหมดแพ้ง่ะ
                     System.out.println ("GameOver");
-
                 }
-
             }
         }
         catch(InterruptedException e){
@@ -52,12 +45,12 @@ public class CountTime extends JLabel implements Runnable{
 
     }
 
-    public boolean checkingTime(){
-        if(num == 0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    //public boolean checkingTime(){
+      //  if(num == 0){
+        //    return true;
+        //}
+        //else {
+          //  return false;
+       // }
+    //}
 }

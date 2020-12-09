@@ -12,7 +12,7 @@ public class FuncScore {
     }
     public int DecreaseScore(Player p,Monster m) {
         if (getScore () <= 0 || getScore ()<= 100) {//เช็คไม่ให้ติดลบ
-            this.Combo = 1;
+            this.Combo = 1; //ทำลายการเพิ่มคะแนนที่ได้รับจากการตอบถูกต่อเนื่อง
             p.Attacked (m);
             return this.Score=0;
 
@@ -27,7 +27,7 @@ public class FuncScore {
     public int IncreaseScore(Player p,Monster m){
 
         this.Score=getScore ()+(100*this.Combo);
-        this.Combo += 1;
+        this.Combo += 1; //เพิ่มคะแนนที่ได้รับจากการตอบถูกต่อเนื่อง
         m.Attacked (p);
         return Score;
     }

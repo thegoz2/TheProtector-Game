@@ -67,23 +67,23 @@ public class MonsterCard{
         monCardPanel.add(monPanel5, "5");
         monCardPanel.add(monPanel6, "6");
 
-        monCardPanel.setBackground(new Color(0, 25, 50));//เปลี่ยนสีมอน
+        monCardPanel.setBackground(new Color(0, 25, 50));//เปลี่ยนสีมอนbg
 
 
     }
 
     public void HitEffect(){
-        monCardPanel.setBackground (Color.red);
-        monCardPanel.setBackground (Color.red);
+        monCardPanel.setBackground (Color.red);//เปลียนเป็นสีแดง
+
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
         @Override
 
         public void run() {
 
-            monCardPanel.setBackground (new Color(0, 25, 50));
-            monCardPanel.setBackground (new Color(0, 25, 50));
+
+            monCardPanel.setBackground (new Color(0, 25, 50));//เปลี่ยนสีกลับหลังจากเวลาผ่านไป
         }
-        },100);
+        },100); //delay 0.1วิ
 
 
 

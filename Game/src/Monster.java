@@ -4,7 +4,7 @@ public class  Monster  {
     public String name;
     public int atk;
     public boolean dead=false;
-    public int monsterchange = 0;
+
 
 
     public Monster(int hp, int atk) {
@@ -31,22 +31,22 @@ public class  Monster  {
     }
 
 
-    public int Attacked(Player p) {
+    public int Attacked(Player p) { //ฟังชั่นไว้ตี  overload จากคลาสplayer
         int j = this.getHp ();
-        int k = p.getAtk ();
-        if (j - k >= 0) {
+        int k = p.getAtk (); //รับพลังโจมตี player
+        if (j - k >= 0) {       //ถ้าไม่ติดลบจะลดเลือดปกติทีละ10
             return this.Hp = Hp - k;
         } else {
-            return this.Hp = 0;
+            return this.Hp = 0;//ถ้าติดลบจะทำให้เลือดเป็น 0
         }
 
     }
 
 
-    public boolean monsterDead(Monster m) {
-        if (m.getHp () <= 0) {
-            return dead=true;
+    public boolean monsterDead(Monster m) { //ตรวจสอบว่ามอนตายไหม
+        if (m.getHp () <= 0) {// เลือดน้อยกว่า0 หรือเท่ากับ 0
+            return dead=true; //จะให้สถานะว่ามอนตายแล้วเป็นจริง
         }
-        return dead=false;
+        return dead=false; //จะให้สถานะว่ามอนยังไม่ตาย
     }
 }

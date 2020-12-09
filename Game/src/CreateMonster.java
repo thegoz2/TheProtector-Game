@@ -1,10 +1,8 @@
 public class CreateMonster {
 
-    public int monsterchange = 0;
+
    public Monster [] MonsterNum = new Monster[6];
     public CreateMonster(){
-
-
          MonsterNum[0] =  new Monster (20,10);
          MonsterNum[0].setName ("Tico");
         MonsterNum[1] =  new Monster (20,10);
@@ -17,13 +15,5 @@ public class CreateMonster {
         MonsterNum[4].setName ("Luna");
         MonsterNum[5] =  new Monster (50,10);
         MonsterNum[5].setName ("Sirawich");
-
-
     }
-
-
-    public int getMonsterchange() {
-        return monsterchange;
-    }
-
 }

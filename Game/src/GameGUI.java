@@ -21,7 +21,7 @@ public class GameGUI  implements ActionListener, WindowListener {
     private ArrayProblems arrayProblems= new ArrayProblems();
     private int quiz = 0;
     public CreateMonster monster = new CreateMonster ();
-    public int monNum = monster.getMonsterchange ();
+    public int monNum = 0;
     private Player Honey = new Player();
     private int nextMon = 1;
 
@@ -160,13 +160,12 @@ public class GameGUI  implements ActionListener, WindowListener {
         Honey.DecreaseScore (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
-        monsterPanel.HitEffect ();
+        monsterPanel.HitEffect ();//effectโดนตี
         PlayerDead ();//player เลือดเหลือ 0 ตาย
     }
 
     public void ChoiceCorrect(){
-        quiz ++;
-
+        quiz ++; //เปลี่ยนคำถามไลังจากตอบถูก
         Honey.IncreaseScore (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน ทำparametor เพื่อเชื่อเช็ค ให้มอนเตอร์ตีกันได้
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
         monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
@@ -182,12 +181,12 @@ public class GameGUI  implements ActionListener, WindowListener {
                 bt2.setBackground (null);
                 bt3.setBackground (null);
                 bt4.setBackground (null);
-                time.resettime ();
+                time.resettime ();//นับเวลาใหม่หลังจากตอบถูก
                 if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){ //เช็คว่าตายไหม ถ้าตาย จะเปลี่ยนมอน
                     monNum +=1; //เปลี่ยนindex mon ก็คือเปลี่ยนstatus monster เป็นตัวถัดไป
                     nextMon++;//เปลี่ยนรูปมอนเตอร์
                     monsterPanel.c.show(monsterPanel.monCardPanel, nextMon+"");//เปลี่ยนรูปมอนเตอร์
-                    monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
+                    monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือดมอนหลังโดนตี
 
                 }
                 scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
@@ -197,7 +196,7 @@ public class GameGUI  implements ActionListener, WindowListener {
 
     }
 
-public void UnBlcokBotton1() {
+public void UnBlcokBotton1() {//ห้ามกดปุ่ม 2 3 4
     bt2.setEnabled (false);
     bt3.setEnabled (false);
     bt4.setEnabled (false);
