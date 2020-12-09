@@ -153,34 +153,27 @@ public class GameGUI  implements ActionListener, WindowListener {
 
 
 
-
+//choice
     public void ChoiceIncorrect(){
 
 
-        Honey.InCorrect (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
+        Honey.DecreaseScore (Honey,monster.MonsterNum[monNum]); //ลดเหลือดplayer และ ลด คะแนน
         tf2.setText ("Your HP : "+Honey.getHp ());// โชว์เลือดผู้เล่น
         scoreLabel.setText ("Score : "+Honey.getScore ());// โชว์คะแนนผู้เล่น
         monsterPanel.HitEffect ();
         PlayerDead ();//player เลือดเหลือ 0 ตาย
     }
 
-
-
-
     public void ChoiceCorrect(){
         quiz ++;
 
-        Honey.Correct (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน
+        Honey.IncreaseScore (Honey,monster.MonsterNum[monNum]);//บวกคะแนน และ ลดเลือดมอน ทำparametor เพื่อเชื่อเช็ค ให้มอนเตอร์ตีกันได้
         tf2.setText ("Your HP : "+Honey.getHp ());//แสดงเลือดplayer ล่าสุด
         monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
-
-
         timer.schedule(new TimerTask (){//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
-
             @Override
             public void run() {
-
-                tf1.setText(arrayProblems.arrayQuiz[quiz][0]);
+                tf1.setText(arrayProblems.arrayQuiz[quiz][0]); //เปลี่ยนคำถามหลังจากตอบถูก
                 bt1.setText(arrayProblems.arrayQuiz[quiz][1]);
                 bt2.setText(arrayProblems.arrayQuiz[quiz][2]);
                 bt3.setText(arrayProblems.arrayQuiz[quiz][3]);
@@ -191,13 +184,12 @@ public class GameGUI  implements ActionListener, WindowListener {
                 bt4.setBackground (null);
                 time.resettime ();
                 if(monster.MonsterNum[monNum].monsterDead (monster.MonsterNum[monNum])==true){ //เช็คว่าตายไหม ถ้าตาย จะเปลี่ยนมอน
-                    monNum +=1;
-                    nextMon++;
-                    monsterPanel.c.show(monsterPanel.monCardPanel, nextMon+"");
+                    monNum +=1; //เปลี่ยนindex mon ก็คือเปลี่ยนstatus monster เป็นตัวถัดไป
+                    nextMon++;//เปลี่ยนรูปมอนเตอร์
+                    monsterPanel.c.show(monsterPanel.monCardPanel, nextMon+"");//เปลี่ยนรูปมอนเตอร์
                     monsterHPLabel.setText (monster.MonsterNum[monNum].getName ()+"'s HP : "+Integer.toString(monster.MonsterNum[monNum].getHp ()));//แสดงเลือมอน
 
                 }
-
                 scoreLabel.setText ("Score : "+Honey.getScore ());//แสดงคะแนนล่าสุด
 
             }
@@ -206,111 +198,78 @@ public class GameGUI  implements ActionListener, WindowListener {
     }
 
 public void UnBlcokBotton1() {
-
     bt2.setEnabled (false);
     bt3.setEnabled (false);
     bt4.setEnabled (false);
     timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
-
         @Override
         public void run() {
-
-
             bt2.setEnabled (true);
             bt3.setEnabled (true);
             bt4.setEnabled (true);
 
         }
-
-
     }, 2500);
 }
     public void UnBlcokBotton2() {
-
         bt1.setEnabled (false);
         bt3.setEnabled (false);
         bt4.setEnabled (false);
         timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
-
             @Override
             public void run() {
-
-
                 bt1.setEnabled (true);
                 bt3.setEnabled (true);
                 bt4.setEnabled (true);
-
             }
-
-
         }, 2500);
     }
     public void UnBlcokBotton3() {
-
         bt2.setEnabled (false);
         bt1.setEnabled (false);
         bt4.setEnabled (false);
         timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
-
             @Override
             public void run() {
-
-
                 bt2.setEnabled (true);
                 bt1.setEnabled (true);
                 bt4.setEnabled (true);
-
             }
-
-
         }, 2500);
     }
     public void UnBlcokBotton4() {
-
         bt2.setEnabled (false);
         bt3.setEnabled (false);
         bt1.setEnabled (false);
         timer.schedule (new TimerTask () {//delay คำสั่งทำในโค๊ตหลังเวลาผ่านไป
-
             @Override
             public void run() {
-
-
                 bt2.setEnabled (true);
                 bt3.setEnabled (true);
                 bt1.setEnabled (true);
-
             }
-
-
         }, 2500);
     }
 
-
     public void ChooseCorrect(){ //เลือกคำตอบที่ถูกตามarray
         String ans = arrayProblems.arrayQuiz[quiz][5];
-
         if(ans.equals("a1")) { //เช็คคำตอบที่ถูก ข้อหนึ่งถูก
             if(incheck == 1){ //ปุ่มถูกกดจะเปลี่ยนincheck เป็น 1 เอาไว้เช็คปุ่มที่โดนกด
                 bt1.setBackground (Color.green);//โชว์สีเขียวเพื่อแสดงว่าถูก
                 ChoiceCorrect ();//เปลี่ยนสีปุ่ม1 และ ทำฟังชั่นตอบถูก
-                UnBlcokBotton1 ();
+                UnBlcokBotton1 ();//ห้ามกดปุ้มอื่นนอกจากปุ่มแรก
             }
             else if (incheck == 2) { //เช็คข้อ2 โดนกดรึป่าว
-
                 bt2.setBackground (Color.red);
                 ChoiceIncorrect ();//ถ้าโดนกดจะเปลี่ยนสีปุ่มเป็นแดง
             } else if (incheck == 3) {
                 bt3.setBackground (Color.red);
-
                 ChoiceIncorrect ();
             } else if (incheck == 4) {
                 bt4.setBackground (Color.red);
                 ChoiceIncorrect ();
             }
         }
-
-
         else if(ans.equals("a2")){ // ข้อ2 ถูก
             if(incheck == 2){
                 bt2.setBackground (Color.green);
@@ -350,7 +309,6 @@ public void UnBlcokBotton1() {
                 bt4.setBackground (Color.green);
                 ChoiceCorrect ();
                 UnBlcokBotton4 ();
-
             }
             else if (incheck == 2) {
                 bt2.setBackground (Color.red);
@@ -366,35 +324,27 @@ public void UnBlcokBotton1() {
     }
 
     @Override
-
-
     public  void actionPerformed(ActionEvent click)  {
         if(click.getSource().equals(bt1)) {
             incheck = 1;
             ChooseCorrect();
-
-
         }
         else if(click.getSource().equals(bt2)) {
             incheck = 2;
             ChooseCorrect();
-
         }
         else if(click.getSource().equals(bt3)) {
             incheck = 3 ;
             ChooseCorrect();
-
         }
         else if(click.getSource().equals(bt4)) {
             incheck = 4;
             ChooseCorrect();
-
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
-
     }
 
     public static void main(String[] args) {

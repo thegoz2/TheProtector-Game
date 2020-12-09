@@ -1,7 +1,7 @@
 import java.lang.*;
 import java.security.PrivateKey.*;
 
-public class  Player extends Model {
+public class  Player extends FuncScore {
 
     private int Hp=100;
     private int atk=10;

@@ -1,7 +1,7 @@
 import javax.swing.*;
 import javax.swing.JComponent.*;
 
-public class Model   {
+public class FuncScore {
 
     public  int Combo = 1;
     public int Score = 0;
@@ -10,24 +10,21 @@ public class Model   {
     public int getScore() {
         return Score;
     }
-
-    public int InCorrect(Player p,Monster m) {
-
-        if (getScore () <= 0 || getScore ()<= 100) {
+    public int DecreaseScore(Player p,Monster m) {
+        if (getScore () <= 0 || getScore ()<= 100) {//เช็คไม่ให้ติดลบ
             this.Combo = 1;
             p.Attacked (m);
             return this.Score=0;
 
-        } else {
+        } else //ถ้าไม่ติดลบ
+            {
             this.Combo = 1;
             p.Attacked (m);
             return this.Score = getScore () - 100 ;
-
-
         }
 
     }
-    public int Correct(Player p,Monster m){
+    public int IncreaseScore(Player p,Monster m){
 
         this.Score=getScore ()+(100*this.Combo);
         this.Combo += 1;
